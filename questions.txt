@@ -1,0 +1,35 @@
+1. Write a program that will have an integer variable and a pointer (say, p) pointing to it. Also have a
+
+pointer to pointer pointing to p. Take the value for the integer variable and print it using p, and pp.
+
+2. Implement a one dimensional array of integers where array size of the array will be provided during
+
+runtime. Accept the value for the elements and print those using pointers.
+
+3. Implement a two dimensional array of integers using a) array of pointers b) pointer to pointer (with two
+
+malloc statements and again with one malloc statement, c) pointer to an array. Accept the value for the
+
+elements and print those.
+
+4. Implement the programs in Q.2 and 3 breaking it into functions for i) getting the dimensions from user,
+
+ii) dynamic memory allocation, iii) accepting the values and iv) printing the values.
+
+5. Store name and age of number of persons (number provided at run time). Collect the data and display
+
+data in the ascending order of age. Implement without using structure. Write functions for memory
+
+allocation of the list, sorting and display of data.
+
+6. Implement Q.5 using structure.
+
+7. Maintain a list to store roll, name and score of students. As and when required student record may be
+
+added or deleted. Also, the list has to be displayed. Design suitable functions for different operations.
+
+8. Consider an array that stores roll, name, and score of number of students. Develop a function to sort the
+
+array. User of sort() will develop the comparison function for sorting on roll/score and ascending or
+
+descending order and reuse the same sort() function.
