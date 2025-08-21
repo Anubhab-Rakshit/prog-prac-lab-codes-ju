@@ -11,14 +11,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int q2_dim(){
+int q2_dim(){ // function for dimension of 1d array
     printf("Enter the dimension for the 1d array :- \n");
     int num;
     scanf("%d", &num);
     return num;
 }
 
-void q2_alloc(int *arr,int n){
+void q2_alloc(int *arr,int n){ // function for allocating memory to 1d array
     arr = (int *)malloc(n * sizeof(int));
     printf("Enter the elements :- \n");
     for(int i=0;i<n;i++){
@@ -32,7 +32,7 @@ void q2_alloc(int *arr,int n){
 }
 
 
-void get(int **arr,int r,int c){
+void get(int **arr,int r,int c){ // function for entering elements into 2d array
     printf("Enter your %d elements :- \n" , r*c);
     for(int i=0;i<r;i++){
         for(int j=0;j<c;j++){
@@ -42,17 +42,18 @@ void get(int **arr,int r,int c){
 
 }
 
-void print(int **arr,int r,int c){
+void print(int **arr,int r,int c){ // function for printing elements of 2d array
     printf("\nYour %d elements are :- \n" , r*c);
     for(int i=0;i<r;i++){
         for(int j=0;j<c;j++){
             printf("%d ",arr[i][j]);
         }
+        printf("\n");
     }
 
 }
 
-void methoda(){
+void methoda(){ // method of array of pointers (2d array)
     printf("Enter the number of rows :- \n");
     int r;
     scanf("%d",&r);
@@ -71,7 +72,7 @@ void methoda(){
     }
 }
 
-void methodb_two(){
+void methodb_two(){ // method for double malloc (2d array)
     printf("Enter the number of rows :- \n");
     int r;
     scanf("%d",&r);
@@ -91,7 +92,7 @@ void methodb_two(){
 
 }
 
-void methodb_single(){
+void methodb_single(){ // method for single malloc (1d array)
     printf("Enter the number of rows :- \n");
     int r;  
     scanf("%d",&r);
@@ -111,8 +112,8 @@ void methodb_single(){
 
 int main(){
     int ch;
-    printf("Enter your choice :- \n");
-    scanf("%d",&ch);
+    printf("Enter your choice :- \n"); 
+    scanf("%d",&ch); // Choice for switch case
     switch(ch){
         case 1:
         methoda();
@@ -125,9 +126,9 @@ int main(){
         break;
         case 4:
         printf("For Question 2 \n");
-        int n=q2_dim();
+        int n=q2_dim(); // getting dimension
         int *arr;
-        q2_alloc(arr,n);
+        q2_alloc(arr,n); // allocating memory and print elements
         break;
         default:
         printf("Invalid choice\n");

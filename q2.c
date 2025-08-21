@@ -7,6 +7,9 @@
     Roll number :- 002410501029
 */
 
+/*
+Initialize int* pointer --> Get number of elements --> Allocate memory and enter the values --> Print elements 
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

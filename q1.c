@@ -7,6 +7,8 @@
     Roll number :- 002410501029
 */
 
+
+/* Initialize pointer --> Initialize pointer to pointer --> Enter number --> do necessary steps --> print values*/
 #include <stdio.h>
 #include <stdlib.h>
 
