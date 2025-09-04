@@ -1,3 +1,13 @@
+/*
+Write a program to store student information in a file and to do the following operations. Information includes roll, name, and score in five subjects. Use may like to add record (check if roll number is unique), display all records showing roll, name and total score. User may search for the record against a roll.
+User may edit the details in a record.User may delete record.Deletion may be logical (by some means indicate it is an invalid record and to be avoided in processing) and physical(file will not have the record ).
+
+Name :- Anubhab Rakshit
+Class :- BCSE - II
+Roll Number :- 002410501029
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -69,7 +79,7 @@ void add(char *filename) {
     fclose(fp);
 }
 
-void display(char *filename) {
+void display(char *filename) { // display function
     FILE *fp = fopen(filename, "rb");
     if (fp==NULL) {
 
@@ -80,10 +90,10 @@ void display(char *filename) {
     Student s;
     printf("\nDetails in file :- \n");
     while (fread(&s, sizeof(Student), 1, fp)) {
-        if (!s.deleted) {
+        if (!s.deleted) { // not temporarily deleted 
             int total = 0;
             for (int i = 0; i < 5; i++) {
-                total += s.marks[i];
+                total += s.marks[i]; // summation of marks
             }
             printf("Name :- %s\n", s.name);
             printf("Roll :- %d\n", s.roll);
@@ -94,7 +104,7 @@ void display(char *filename) {
     fclose(fp);
 }
 
-void search(char *filename) {
+void search(char *filename) { // search function
     int roll,f=0;
 
 
@@ -108,9 +118,9 @@ void search(char *filename) {
     scanf("%d", &roll);
 
     Student s;
-    while(fread(&s, sizeof(Student), 1, fp)){
+    while(fread(&s, sizeof(Student), 1, fp)){ //reading till end of file
 
-        if (s.roll==roll && !s.deleted) {
+        if (s.roll==roll && !s.deleted) { //roll matched and not temporarily deleted
 
             printf("Record Found!\n  Roll :- %d\nName :- %s\nMarks :- ", s.roll, s.name);
             for (int i=0;i<5;i++){ 
@@ -130,7 +140,7 @@ void search(char *filename) {
 
 }
 
-void edit(char *filename){
+void edit(char *filename){ //edit data in function
 
     int roll, f=0;
     FILE *fp = fopen(filename, "rb+");
@@ -147,7 +157,7 @@ void edit(char *filename){
     Student s;
     while (fread(&s, sizeof(Student), 1, fp)) {
 
-        if (s.roll == roll && !s.deleted) {
+        if (s.roll == roll && !s.deleted) { //data to be edited (found)
             f=1;
             printf("Enter new name :- ");
             getchar();
@@ -159,8 +169,8 @@ void edit(char *filename){
             {
                 scanf("%d", &s.marks[i]);
             }
-            fseek(fp, -sizeof(Student), SEEK_CUR);
-            fwrite(&s,sizeof(Student),1,fp);
+            fseek(fp, -sizeof(Student), SEEK_CUR); // moving  cursor back with sizeof(Student)
+            fwrite(&s,sizeof(Student),1,fp); // writing new data 
             printf("Record updated\n");
             break;
         }
@@ -173,7 +183,7 @@ void edit(char *filename){
     fclose(fp);
 }
 
-void logicalDelete(char *filename) {
+void logicalDelete(char *filename) { //logical deletion function (stays in file but is deleted)
 
     int roll, f= 0;
     FILE *fp = fopen(filename, "rb+");
@@ -190,9 +200,9 @@ void logicalDelete(char *filename) {
     Student s;
     while (fread(&s,sizeof(Student),1,fp)) {
         if (s.roll==roll && !s.deleted) {
-            s.deleted = 1;
-            fseek(fp, -sizeof(Student), SEEK_CUR);
-            fwrite(&s,sizeof(Student),1,fp);
+            s.deleted = 1; // changing from 0 to 1 , here 0 is not logically deleted and 1 is logically deleted
+            fseek(fp, -sizeof(Student), SEEK_CUR); // moving cursor back by 1 * sizeof(Student)
+            fwrite(&s,sizeof(Student),1,fp); // writing new data
             printf("Record logically deleted\n");
             f=1;
             break;
@@ -205,11 +215,11 @@ void logicalDelete(char *filename) {
     }
     fclose(fp);
 }
-void physicalDelete(char *filename) {
+void physicalDelete(char *filename) { // physical deleting all data which are logically deleted
 
     FILE *fp = fopen(filename, "rb");
 
-    FILE *temp = fopen("temp.dat", "wb");
+    FILE *temp = fopen("temp.dat", "wb"); // temporarily creating a new file
     
     if (fp==NULL||temp==NULL) {
         printf("Error \n");
@@ -228,8 +238,8 @@ void physicalDelete(char *filename) {
     fclose(fp);
     fclose(temp);
 
-    remove(filename);
-    rename("temp.dat", filename);
+    remove(filename); //removing original file
+    rename("temp.dat", filename); //renaming temp file to original file
 
 
     printf("Physical deletion completed!\n");
