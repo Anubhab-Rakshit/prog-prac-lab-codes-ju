@@ -20,8 +20,8 @@ void f(float a){
     cout<<" inside f(float)\n";
 }
 int main(){
-    cout <<"int : ";f(12);
-    cout <<"char : ";f((char)'a');
-    cout <<"float : ";f((float)8);
+    cout <<"int : ";f(12); // passing int 
+    cout <<"char : ";f((char)'a'); // passing char but c++ takes it as int
+    cout <<"float : ";f((float)8); // passing float
    
 }

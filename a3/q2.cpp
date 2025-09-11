@@ -13,7 +13,7 @@ Roll Number :- 002410501029
 
 using namespace std;
 
-int max(int a,int b){
+int max(int a,int b){ //passing value
     if (a>b){
         return a;
     }
@@ -22,7 +22,7 @@ int max(int a,int b){
     }
 }
 
-int& max_ref(int &a,int &b){
+int& max_ref(int &a,int &b){ // passing reference
     if (a>b){
         return a;
     }

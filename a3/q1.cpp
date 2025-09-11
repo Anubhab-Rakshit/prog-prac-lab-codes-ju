@@ -12,7 +12,7 @@ Roll Number :- 002410501029
 using namespace std;
 
 pair<int,int> swap(int a,int b){
-    return {b,a};
+    return {b,a}; //swapping values returning as pair
 }
 
 int main(){

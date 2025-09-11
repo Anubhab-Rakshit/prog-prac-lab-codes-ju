@@ -18,8 +18,8 @@ void f(char a,int b){
     cout<<"Inside f(char,int) \n";
 }
 int main(){
-    cout<<"Passing (int,char) ";f(12,'c');
-    cout<<"Passing (char,int) ";f('a',123);
+    cout<<"Passing (int,char) ";f(12,'c'); //passing int ,char 
+    cout<<"Passing (char,int) ";f('a',123); // passing char ,int
     //cout<<"Passing (float,float)";f((float)12,(float)26.5);
     return 0;
 }

@@ -11,7 +11,7 @@ Roll Number :- 002410501029
 #include <iostream>
 
 using namespace std;
-float calc(float income,float tax=10.0){
+float calc(float income,float tax=10.0){ //function for calculating tax amount
     return (tax*income)/100.0;
 }
 int main(){
@@ -26,10 +26,10 @@ int main(){
         cout<<"Enter your tax rate :- ";
         float rate;
         cin>>rate;
-        tax_amt=calc(income,rate);
+        tax_amt=calc(income,rate); //calling with custom tax rate
     }
     else{
-        tax_amt=calc(income);
+        tax_amt=calc(income); //calling with default tax rate
     }
 
     cout<<"Calculated tax amt :- "<<tax_amt<<endl;
