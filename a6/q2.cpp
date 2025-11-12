@@ -1,3 +1,12 @@
+/*
+
+    2. Consider a class Student with roll, name and score as attributes. Support to take and
+display data is also there. One wants to works with array of Student objects. May
+collect data for array elements, display those. In case index goes out of bounds,
+exception is to be raised with suitable message.
+    */
+
+
 #include <iostream>
 #include <string>
 using namespace std;
