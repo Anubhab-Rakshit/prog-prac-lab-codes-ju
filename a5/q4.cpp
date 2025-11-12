@@ -1,3 +1,13 @@
+/* 
+4. Each cricketer has name, date of birth and matches played. Cricketer may be a
+bowler or batsman. For a bowler, number of wickets taken, average economy is
+stored. For a batsman, total runs scored, average score is stored. A double wicket
+pair is formed taking a bowler and a batsman. An all-rounder is both a bowler
+and batsman. Support must be there to show the details of a cricketer, bowler,
+batsmen, all-rounder and the pair.
+Design the classes and implement.
+    */
+
 #include <iostream>
 #include <string>
 #include <vector>
