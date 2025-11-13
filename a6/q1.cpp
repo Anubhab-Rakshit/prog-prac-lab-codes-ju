@@ -14,6 +14,11 @@ information is to be stored like date of transaction, member-id, book-id, serial
 number, returned or not. An entry is made when book is issued and updated when
 the book is returned. For storing the information consider files.
 Design the classes and implement.
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
     */
 
 #include <iostream>
@@ -22,9 +27,7 @@ Design the classes and implement.
 #include <string>
 using namespace std;
 
-// =============================================================
-// BOOK CLASS
-// =============================================================
+//Class Book
 class Book {
 public:
     int bookId, serialNo;
@@ -48,9 +51,7 @@ public:
     }
 };
 
-// =============================================================
-// MEMBER (BASE CLASS)
-// =============================================================
+//Class Member
 class Member {
 protected:
     string name, email, address;
@@ -82,9 +83,7 @@ public:
     virtual ~Member() {}
 };
 
-// =============================================================
-// STUDENT MEMBER
-// =============================================================
+//Class Student (Member)
 class Student : public Member {
 public:
     Student(int id, string n, string e, string a) : Member(id, n, e, a) {}
@@ -93,9 +92,7 @@ public:
     string type() override { return "Student"; }
 };
 
-// =============================================================
-// FACULTY MEMBER
-// =============================================================
+//Class Faculty (Member)
 class Faculty : public Member {
 public:
     Faculty(int id, string n, string e, string a) : Member(id, n, e, a) {}
@@ -104,9 +101,7 @@ public:
     string type() override { return "Faculty"; }
 };
 
-// =============================================================
-// TRANSACTION CLASS
-// =============================================================
+//Transaction Class
 class Transaction {
 public:
     int memberId, bookId, serialNo;
@@ -127,9 +122,8 @@ public:
     }
 };
 
-// =============================================================
-// LIBRARY CLASS
-// =============================================================
+
+//Library Class 
 class Library {
     vector<Book> books;
     vector<Member*> members;
@@ -278,15 +272,13 @@ public:
     }
 };
 
-// =============================================================
-// MAIN MENU
-// =============================================================
+
 int main() {
     Library L;
     int ch;
 
     while (true) {
-        cout << "\n===== LIBRARY MENU =====\n";
+        cout << "\nMENU :- \n";
         cout << "1. Add Book\n";
         cout << "2. Add Member\n";
         cout << "3. Issue Book\n";
@@ -309,5 +301,4 @@ int main() {
         }
     }
 }
-
 

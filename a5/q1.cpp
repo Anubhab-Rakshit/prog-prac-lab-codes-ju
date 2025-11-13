@@ -6,6 +6,11 @@ and will be able to answer: i) which student has selected which subjects and ii)
 for a subjects who are the students.
 Design the classes and implement. For list consider memory data structure.
 
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
 */
 
 #include <iostream>
@@ -15,12 +20,10 @@ using namespace std;
 
 class Subject; // forward declaration
 
-// ------------------ Student Class ------------------
-class Student {
-private:
-    int roll;
+class Student { //details of student
+    int roll; 
     string name;
-    vector<Subject*> subjects;
+    vector<Subject*> subjects; //list of subjects
 
 public:
     Student(int r, string n) : roll(r), name(n) {}
@@ -30,16 +33,14 @@ public:
 
     void addSubject(Subject* sub) { subjects.push_back(sub); }
 
-    void showSubjects() const;   // Only declaration here
+    void showSubjects() const; 
 };
 
-
-// ------------------ Subject Class ------------------
+//Subjects details 
 class Subject {
-private:
     int code;
     string name;
-    vector<Student*> students;
+    vector<Student*> students; //students 
 
 public:
     Subject(int c, string n) : code(c), name(n) {}
@@ -49,7 +50,7 @@ public:
 
     void addStudent(Student* s) { students.push_back(s); }
 
-    void showStudents() const {
+    void showStudents() const { //show students enrolled in subject
         cout << "\nSubject: " << name << " (" << code << ")\n";
         if (students.empty()) {
             cout << "No students enrolled yet.\n";
@@ -62,7 +63,6 @@ public:
 };
 
 
-// ✅ Now the full Student::showSubjects() definition AFTER Subject is fully defined
 void Student::showSubjects() const {
     cout << "\nStudent: " << name << " (Roll: " << roll << ")\n";
     if (subjects.empty()) {
@@ -76,10 +76,9 @@ void Student::showSubjects() const {
 
 
 
-// ------------------ MENU DRIVEN MAIN ------------------
 int main() {
-    vector<Student*> students;
-    vector<Subject*> subjects;
+    vector<Student*> students; //list of students
+    vector<Subject*> subjects; //list of subjects
     int choice;
 
     while (true) {

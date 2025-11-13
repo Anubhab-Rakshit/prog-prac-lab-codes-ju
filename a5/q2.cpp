@@ -1,6 +1,6 @@
 /*
 
-In a library, for each book book-id, serial number (denotes copy number of a
+2. In a library, for each book book-id, serial number (denotes copy number of a
 book), title, author, publisher and price are stored. Book-id and serial number
 together will be unique identifier for a book. Members are either student or
 faculty. Each member has unique member-id. Name, e-mail, address are also to
@@ -15,6 +15,11 @@ member-id, book-id, serial number, returned or not. An entry is made when
 book is issued and updated when the book is returned.
 Design the classes and implement. For list consider memory data structure.
 
+
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
 */
 
 
@@ -23,6 +28,7 @@ Design the classes and implement. For list consider memory data structure.
 #include <string>
 using namespace std;
 
+//Book class (details)
 class Book {
 public:
     string bookId;
@@ -37,6 +43,7 @@ public:
         : bookId(b), serialNo(s), title(t), author(a), publisher(p), price(pr), isIssued(false) {}
 };
 
+//Member Class (contains member details)
 class Member {
 public:
     string memberId;
@@ -50,6 +57,7 @@ public:
         : memberId(id), name(n), email(e), address(a), type(t), issuedCount(0) {}
 };
 
+// Transaction class
 class Transaction {
 public:
     string date;
@@ -62,9 +70,9 @@ public:
         : date(d), memberId(m), bookId(b), serialNo(s), returned(false) {}
 };
 
-vector<Book> books;
-vector<Member> members;
-vector<Transaction> transactions;
+vector<Book> books; //list of books
+vector<Member> members; //list of members
+vector<Transaction> transactions; //list of transactions
 
 Member* findMember(string id) {
     for (auto &m : members)
@@ -78,7 +86,7 @@ Book* findBook(string id, int s) {
     return nullptr;
 }
 
-Transaction* findTransaction(string m, string b, int s) {
+Transaction* findTransaction(string m, string b, int s) { 
     for (auto &t : transactions)
         if (t.memberId == m && t.bookId == b && t.serialNo == s && !t.returned)
             return &t;
@@ -136,7 +144,7 @@ void returnBook() {
     cout << "Book Returned Successfully!\n";
 }
 
-void addBook() {
+void addBook() {  //add book function
     string id, title, author, publisher;
     int serialNo;
     double price;
@@ -152,7 +160,7 @@ void addBook() {
     cout << "Book Added Successfully!\n";
 }
 
-void addMember() {
+void addMember() { //add member function
     string id, name, email, address, type;
     cout << "Enter Member ID: "; cin >> id;
     cout << "Enter Name: "; cin >> name;
@@ -168,7 +176,7 @@ int main() {
     int choice;
 
     do {
-        cout << "\n===== LIBRARY MENU =====\n";
+        cout << "\nLIBRARY MENU :-\n";
         cout << "1. Add Book\n";
         cout << "2. Add Member\n";
         cout << "3. Issue Book\n";

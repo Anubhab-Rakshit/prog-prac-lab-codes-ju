@@ -2,6 +2,13 @@
 
     Implement a class template for 1D array. Elements may be any basic data type.
 Provision to find maximum element, sum of the elements must be there.
+
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
+
 */
 
 

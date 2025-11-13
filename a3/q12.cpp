@@ -1,197 +1,210 @@
+/*
+12. Design the class(es) for the following scenario :
+    * An item list contains item code , name , rate and quantity for several items.
+    * Whenever a new item is added in the list uniqueness of item code is to be checked.
+    * Time to time rate of the items may change.
+    * Whenever an item is issues or received existence of th item is checked and quantity is updated.
+    * In case of issue, availability of quantity is also to be checked.
+    * User may also like to know price/quantity available for an item.
+    
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll no:-  002410501029
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <map>
-#include <iomanip> // For setprecision
+#include <iomanip>
 
-// --------------------------------------------------
-// 1. Item Class: Represents a single inventory item.
-// --------------------------------------------------
+using namespace std; 
+
 class Item {
 private:
-    std::string code;
-    std::string name;
+    string code;
+    string name;
     double rate;
     int quantity;
 
 public:
-    // Constructor
-    Item(const std::string& c, const std::string& n, double r, int q)
+    Item(const string& c, const string& n, double r, int q)
         : code(c), name(n), rate(r), quantity(q) {}
 
-    // --- Accessors (Getters) ---
-    std::string getCode() const { return code; }
-    std::string getName() const { return name; }
-    double getRate() const { return rate; }
-    int getQuantity() const { return quantity; }
+    std::string getCode() const { 
+        return code;
+    }
+    std::string getName() const { 
+        return name;
+    }
+    double getRate() const { 
+        return rate; 
+    }
+    int getQuantity() const { 
+        return quantity; 
+    }
 
-    // --- Mutators (Setters for updates) ---
-
-    // Time to time rate of the items may change.
     void updateRate(double newRate) {
         if (newRate >= 0) {
             rate = newRate;
-            std::cout << "Rate updated for item " << code << " to $" << std::fixed << std::setprecision(2) << rate << std::endl;
+            cout << "Rate updated for item " << code << " to Rs." << rate << endl;
         } else {
-            std::cout << "Error: New rate cannot be negative." << std::endl;
+            cout << "Error: New rate cannot be negative." << endl;
         }
     }
-
-    // Whenever an item is received existence of the item is checked (handled by ItemList)
-    // and quantity is updated.
     bool receive(int amount) {
         if (amount > 0) {
             quantity += amount;
             return true;
         }
-        std::cout << "Error: Receive amount must be positive." << std::endl;
+        cout << "Error: Receive amount must be positive." << endl;
         return false;
     }
 
-    // Whenever an item is issued existence of the item is checked (handled by ItemList)
-    // and quantity is updated.
-    // In case of issue, availability of quantity is also to be checked.
     bool issue(int amount) {
         if (amount <= 0) {
-            std::cout << "Error: Issue amount must be positive." << std::endl;
+            cout << "Error: Issue amount must be positive." << endl;
             return false;
         }
         if (quantity >= amount) {
             quantity -= amount;
             return true;
         } else {
-            std::cout << "Issue failed for item " << code << ": Insufficient quantity. Available: " << quantity << ", Requested: " << amount << "." << std::endl;
+            cout << "Issue failed for item " << code << ": Insufficient quantity. Available: " << quantity << ", Requested: " << amount << "." << endl;
             return false;
         }
     }
 
-    // Displays item information
+  
     void display() const {
-        std::cout << "  Code: " << code
-                  << ", Name: " << name
-                  << ", Rate: $" << std::fixed << std::setprecision(2) << rate
-                  << ", Qty: " << quantity
-                  << std::endl;
+       cout << "  Code: " << code << ", Name: " << name << ", Rate: Rs." << rate << ", Qty: " << quantity  << endl;
     }
 };
 
-// --------------------------------------------------
-// 2. ItemList Class: Manages the collection of Items.
-// --------------------------------------------------
+
 class ItemList {
 private:
-    // Using std::map<ItemCode, Item> for fast lookup and inherent code uniqueness
-    std::map<std::string, Item> items;
+    map<string, Item> items;
 
 public:
-    // Whenever a new item is added in the list uniqueness of item code is to be checked.
-    bool addItem(const std::string& code, const std::string& name, double rate, int quantity) {
-        // Check for uniqueness of item code
+    bool addItem(const string& code, const string& name, double rate, int quantity) {
         if (items.count(code)) {
-            std::cout << "Error: Item with code '" << code << "' already exists. Addition failed." << std::endl;
+            cout << "Error: Item with code '" << code << "' already exists. Addition failed." << endl;
             return false;
         }
 
-        // Add the new item
         items.emplace(code, Item(code, name, rate, quantity));
-        std::cout << "New item '" << name << "' added successfully." << std::endl;
+        cout << "New item '" << name << "' added successfully." << endl;
         return true;
     }
 
-    // Time to time rate of the items may change.
-    bool setRate(const std::string& code, double newRate) {
-        // Check existence
+    bool setRate(const string& code, double newRate) {
         if (items.count(code)) {
             items.at(code).updateRate(newRate);
             return true;
         }
-        std::cout << "Error: Item with code '" << code << "' not found. Rate update failed." << std::endl;
+        cout << "Error: Item with code '" << code << "' not found. Rate update failed." << endl;
         return false;
     }
 
     // Whenever an item is issued or received existence of the item is checked and quantity is updated.
     // In case of issue, availability of quantity is also to be checked.
-    bool issueItem(const std::string& code, int amount) {
-        // Check existence
+    bool issueItem(const string& code, int amount) {
         if (!items.count(code)) {
-            std::cout << "Error: Item with code '" << code << "' not found. Issue failed." << std::endl;
+            cout << "Error: Item with code '" << code << "' not found. Issue failed." << endl;
             return false;
         }
         // Quantity check handled inside Item::issue
         bool success = items.at(code).issue(amount);
         if (success) {
-            std::cout << "Issued " << amount << " units of item " << code << "." << std::endl;
+            cout << "Issued " << amount << " units of item " << code << "." << endl;
         }
         return success;
     }
 
     // Whenever an item is issued or received existence of the item is checked and quantity is updated.
-    bool receiveItem(const std::string& code, int amount) {
-        // Check existence
+    bool receiveItem(const string& code, int amount) {
+
         if (!items.count(code)) {
-            std::cout << "Error: Item with code '" << code << "' not found. Receive failed." << std::endl;
+            cout << "Error: Item with code '" << code << "' not found. Receive failed." << endl;
             return false;
         }
         bool success = items.at(code).receive(amount);
         if (success) {
-            std::cout << "Received " << amount << " units of item " << code << "." << std::endl;
+            cout << "Received " << amount << " units of item " << code << "." << endl;
         }
         return success;
     }
 
-    // User may also like to know price/quantity available for an item.
-    void queryItem(const std::string& code) const {
+    //to know price/quantity available for an item.
+    void queryItem(const string& code) const {
         if (items.count(code)) {
             const Item& item = items.at(code);
-            std::cout << "\n--- Item Query: " << item.getName() << " (" << code << ") ---" << std::endl;
-            std::cout << "  Current Rate: $" << std::fixed << std::setprecision(2) << item.getRate() << std::endl;
-            std::cout << "  Quantity Available: " << item.getQuantity() << std::endl;
+            cout << "\n--- Item Query: " << item.getName() << " (" << code << ") ---" << endl;
+            cout << "  Current Rate: Rs" << item.getRate() << endl;
+            cout << "  Quantity Available: " << item.getQuantity() << endl;
         } else {
-            std::cout << "Query failed: Item with code '" << code << "' not found." << std::endl;
+            cout << "Query failed: Item with code '" << code << "' not found." << endl;
         }
     }
 
     void displayAllItems() const {
-        std::cout << "\n--- Full Inventory List (" << items.size() << " items) ---" << std::endl;
+        cout << "\n--- Full Inventory List (" << items.size() << " items) ---" << endl;
         for (const auto& pair : items) {
             pair.second.display();
         }
-        std::cout << "------------------------------------------" << std::endl;
+       cout << "------------------------------------------" << endl;
     }
 };
 
-// --------------------------------------------------
-// 3. Example Usage
-// --------------------------------------------------
+
 int main() {
     ItemList inventory;
-
-    std::cout << "--- 1. Initial Item Addition ---\n";
-    // Add new items (Uniqueness check is handled)
-    inventory.addItem("A101", "Laptop", 1200.00, 50);
-    inventory.addItem("B202", "Monitor", 350.50, 100);
-    inventory.addItem("A101", "Duplicate Laptop", 1000.00, 10); // Check uniqueness (will fail)
-
-    inventory.displayAllItems();
-
-    std::cout << "\n--- 2. Rate Change ---\n";
-    // Change rate (Existence checked)
-    inventory.setRate("A101", 1150.99);
-    inventory.setRate("Z999", 50.00); // Check existence (will fail)
-
-    inventory.queryItem("A101");
-
-    std::cout << "\n--- 3. Issuing and Receiving ---\n";
-    // Issue item (Existence and availability checked)
-    inventory.issueItem("B202", 15);
-    inventory.issueItem("B202", 100); // Check availability (will fail: 100 - 15 = 85 available)
-
-    // Receive item (Existence checked)
-    inventory.receiveItem("A101", 10);
-    inventory.receiveItem("Z999", 5); // Check existence (will fail)
-
-    inventory.queryItem("B202");
-    inventory.queryItem("A101");
-
+    string item,code;
+    float rate;
+    int quan;
+    int f=1;
+    while(f){
+        cout<<" MENU:-  \n 1. Add items \n 2. Change rate \n 3. Check items info \n 4. Issue item \n 5. Receive item \n 6. Exit " <<endl;
+        int ch;
+        cout<<"Enter your choice :- ";
+        cin>>ch;
+        switch(ch){
+            case 1:
+                cout<<"Enter Item code and Item name :-";
+                cin>>item>>code;
+                cout<<"Enter price and quantity :- ";
+                cin>>rate>>quan;
+                inventory.addItem(code,item,rate,quan);
+                break;
+            case 2:
+                cout<<"Enter Item name to change :-";
+                cin>>code;
+                cout<<"Enter your new rate :- ";
+                cin>>rate;
+                inventory.setRate(code,rate);
+                break;
+            case 3:
+                cout<<"Enter item name to check info :- ";
+                cin>>item;
+                inventory.queryItem(item);
+                break;
+            case 4:
+                cout<<"Enter item name and quantity to issue :- ";
+                cin>>code>>quan;
+                inventory.issueItem(code,quan);
+                break;
+            case 5:
+                cout<<"Enter item name and quantity to receive :- ";
+                cin>>code>>quan;
+                inventory.receiveItem(code,quan);
+                break;
+            case 6:
+                f=0;
+                break;
+            default: cout<<"Invalid choice \n";
+        }
+    }
     return 0;
 }

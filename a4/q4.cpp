@@ -5,6 +5,10 @@ class. Provide support for
 • Two string can be concatenated using + operator,
 • Two strings can be compared using the relational operators.
 
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
 */
 
 
@@ -18,14 +22,14 @@ private:
     int length;
 
 public:
-    // ✅ Default constructor
+    // Default constructor
     STRING() {
         length = 0;
         str = new char[1];
         str[0] = '\0';
     }
 
-    // ✅ Parameterized constructor (initialization facility)
+    // Parameterized constructor (initialization facility)
     STRING(const char *s) {
         length = strlen(s);
         str = new char[length + 1];
@@ -44,14 +48,14 @@ public:
         cout << str << endl;
     }
 
-    // ✅ Copy constructor
+    // Copy constructor
     STRING(const STRING &obj) {
         length = obj.length;
         str = new char[length + 1];
         strcpy(str, obj.str);
     }
 
-    // ✅ Assignment operator overloading
+    // Assignment operator overloading
     STRING operator=(const STRING &obj) {
         if (this != &obj) {  // Avoid self-assignment
             delete[] str;
@@ -62,7 +66,7 @@ public:
         return *this;
     }
 
-    // ✅ Concatenation operator overloading
+    // Concatenation operator overloading
     STRING operator+(const STRING &obj) {
         STRING temp;
         temp.length = length + obj.length;
@@ -74,13 +78,24 @@ public:
         return temp;
     }
 
-    // ✅ Relational operator overloads (comparison)
-    bool operator==(const STRING &obj) { return strcmp(str, obj.str) == 0; }
-    bool operator!=(const STRING &obj) { return strcmp(str, obj.str) != 0; }
-    bool operator<(const STRING &obj) { return strcmp(str, obj.str) < 0; }
-    bool operator>(const STRING &obj) { return strcmp(str, obj.str) > 0; }
-    bool operator<=(const STRING &obj) { return strcmp(str, obj.str) <= 0; }
-    bool operator>=(const STRING &obj) { return strcmp(str, obj.str) >= 0; }
+    //  Relational operator overloads (comparison)
+    bool operator==(const STRING &obj) 
+    {
+         return strcmp(str, obj.str) == 0; 
+    }
+    bool operator!=(const STRING &obj) { 
+        return strcmp(str, obj.str) != 0; 
+        }
+    bool operator<(const STRING &obj) { 
+        return strcmp(str, obj.str) < 0; 
+        }
+    bool operator>(const STRING &obj) { 
+        return strcmp(str, obj.str) > 0; }
+    bool operator<=(const STRING &obj) { return strcmp(str, obj.str) <= 0; 
+    }
+    bool operator>=(const STRING &obj) { 
+        return strcmp(str, obj.str) >= 0; 
+        }
 
    
 
@@ -90,6 +105,7 @@ public:
     }
 };
 
+//menu class 
 int main() {
     STRING s1, s2, s3, s4;
     int choice;
@@ -131,4 +147,3 @@ int main() {
     }
     return 0;
 }
-

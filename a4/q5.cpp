@@ -4,6 +4,10 @@ Modify the STRING class so that assigning/initializing a string by another will
 not copy it physically but will keep a reference count, which will be incremented.
 Reference value 0 means the space can be released 
 
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
 */
 
 
@@ -42,7 +46,7 @@ public:
     // Assignment operator (reference counting)
     STRING& operator=(const STRING &obj) {
         if (this != &obj) {  // Avoid self assignment
-            (*refCount)--;   // Remove current reference
+            (*refCount)--;   
 
             // If no one is referencing, delete memory
             if (*refCount == 0) {
@@ -75,7 +79,7 @@ public:
 };
 
 int main() {
-    STRING s1("Hello World");
+    STRING s1("Hello I am Anubhab");
 
     cout << "s1: ";
     s1.display();

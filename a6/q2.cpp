@@ -1,9 +1,13 @@
 /*
 
-    2. Consider a class Student with roll, name and score as attributes. Support to take and
+Consider a class Student with roll, name and score as attributes. Support to take and
 display data is also there. One wants to works with array of Student objects. May
 collect data for array elements, display those. In case index goes out of bounds,
 exception is to be raised with suitable message.
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
     */
 
 
@@ -11,9 +15,8 @@ exception is to be raised with suitable message.
 #include <string>
 using namespace std;
 
-// ===============================================
 // Student Class
-// ===============================================
+
 class Student {
     int roll;
     string name;
@@ -39,9 +42,7 @@ public:
     }
 };
 
-// ===============================================
-// MAIN
-// ===============================================
+//main
 int main() {
     int n;
     cout << "Enter number of students: ";
@@ -59,9 +60,6 @@ int main() {
     int idx;
     cin >> idx;
 
-    // ==============================
-    // Exception Handling with try/catch
-    // ==============================
     try {
         if (idx < 0 || idx >= n) {
             throw "Index out of bounds!";   // Exception triggered

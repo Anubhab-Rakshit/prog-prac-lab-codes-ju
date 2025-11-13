@@ -5,7 +5,12 @@ contractual employee it is basic pay + allowance (it is different for different
 contractual employee). An employee pointer may point to either of the two
 categories and accordingly the salary has to be created.
 Design the classes and implement.
-    */
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+
+ */
 
 
 #include <iostream>
@@ -13,9 +18,7 @@ Design the classes and implement.
 #include <vector>
 using namespace std;
 
-// =====================================================
-// Base Class : Employee
-// =====================================================
+//Employee class
 class Employee {
 protected:
     int empId;
@@ -48,67 +51,62 @@ public:
         cout << "\nBasic Pay: " << basicPay << endl;
     }
 
+    //virtual function for type of employee
     virtual string getType() = 0;
 
     virtual ~Employee() {}
 };
 
-// =====================================================
-// Derived Class : Permanent Employee
-// =====================================================
+//Permanent Employee
 class PermanentEmployee : public Employee {
 public:
-    float calculateSalary() override {
+    float calculateSalary()  { //calculate salary of permanent employee
         float hra = 0.30f * basicPay;
         float da  = 0.80f * basicPay;
         return basicPay + hra + da;
     }
 
-    string getType() override { return "Permanent Employee"; }
+    string getType(){ return "Permanent Employee"; }
 
-    void showDetails() override {
-        cout << "\n--- Permanent Employee ---\n";
+    void showDetails() { //show details of Permanent Employee
+        cout << "\nPermanent Employee :-\n";
         Employee::showDetails();
         cout << "Total Salary: " << calculateSalary() << endl;
     }
 };
 
-// =====================================================
-// Derived Class : Contractual Employee
-// =====================================================
+//Contractual Employee
 class ContractualEmployee : public Employee {
     float allowance;
 
 public:
-    void input() override {
+    void input()  {
         Employee::input();
         cout << "Enter Allowance: ";
         cin >> allowance;
     }
 
-    float calculateSalary() override {
+    float calculateSalary()  { //calculate employee for contractual employee
         return basicPay + allowance;
     }
 
-    string getType() override { return "Contractual Employee"; }
+    string getType() { return "Contractual Employee"; }
 
-    void showDetails() override {
-        cout << "\n--- Contractual Employee ---\n";
+    void showDetails() { //show details of contractual employee
+        cout << "\nContractual Employee :- \n";
         Employee::showDetails();
         cout << "Allowance: " << allowance;
         cout << "\nTotal Salary: " << calculateSalary() << endl;
     }
 };
 
-// =====================================================
-// MAIN (Menu-Driven)
-// =====================================================
+
 int main() {
-    vector<Employee*> empList;
+    vector<Employee*> empList; //list of employees
     int choice;
 
     while (true) {
-        cout << "\n===== EMPLOYEE MANAGEMENT SYSTEM =====\n";
+        cout << "\nMENU :- \n";
         cout << "1. Add Permanent Employee\n";
         cout << "2. Add Contractual Employee\n";
         cout << "3. Show All Employees\n";
