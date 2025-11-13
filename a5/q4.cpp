@@ -6,16 +6,19 @@ pair is formed taking a bowler and a batsman. An all-rounder is both a bowler
 and batsman. Support must be there to show the details of a cricketer, bowler,
 batsmen, all-rounder and the pair.
 Design the classes and implement.
-    */
+
+Name :- Anubhab Rakshit
+Class :- BCSE-II A1
+Roll Number:- 002410501029
+*/
 
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
 
-// -------------------------------------
-// Base Class : Cricketer
-// -------------------------------------
+
+//Cricketer class
 class Cricketer {
 protected:
     string name, dob;
@@ -45,67 +48,62 @@ public:
     virtual ~Cricketer() {}
 };
 
-// -------------------------------------
-// Derived Class : Bowler
-// -------------------------------------
+//Bowler Class
+
 class Bowler : virtual public Cricketer {
 protected:
     int wickets;
     float economy;
 public:
     Bowler() {}
-    void input() override {
+    void input() {
         Cricketer::input();
         cout << "Enter Wickets Taken: ";
         cin >> wickets;
         cout << "Enter Economy Rate: ";
         cin >> economy;
     }
-    void showDetails() override {
-        cout << "\n--- Bowler Details ---\n";
+    void showDetails() {
+        cout << "\nBowler Details :- \n";
         Cricketer::showDetails();
         cout << "Wickets Taken: " << wickets;
         cout << "\nEconomy Rate: " << economy << endl;
     }
-    string getType() override { return "Bowler"; }
+    string getType()  { return "Bowler"; }
 
     int getWickets() { return wickets; }
 };
 
-// -------------------------------------
-// Derived Class : Batsman
-// -------------------------------------
+//Derived Class Batsman
 class Batsman : virtual public Cricketer {
 protected:
     int runs;
     float average;
 public:
     Batsman() {}
-    void input() override {
+    void input()  {
         Cricketer::input();
         cout << "Enter Total Runs: ";
         cin >> runs;
         cout << "Enter Batting Average: ";
         cin >> average;
     }
-    void showDetails() override {
+    void showDetails() {
         cout << "\n--- Batsman Details ---\n";
         Cricketer::showDetails();
         cout << "Total Runs: " << runs;
         cout << "\nBatting Average: " << average << endl;
     }
-    string getType() override { return "Batsman"; }
+    string getType()  { return "Batsman"; }
 
     int getRuns() { return runs; }
 };
 
-// -------------------------------------
-// Multiple Inheritance : AllRounder
-// -------------------------------------
+//All Rounder Class , inherited from class Bowler and Batsman
 class AllRounder : public Bowler, public Batsman {
 public:
-    void input() override {
-        cout << "\n--- Enter All-Rounder Details ---\n";
+    void input()  {
+        cout << "\nEnter All-Rounder Details \n";
         Cricketer::input();
         cout << "Enter Wickets Taken: ";
         cin >> wickets;
@@ -117,8 +115,8 @@ public:
         cin >> average;
     }
 
-    void showDetails() override {
-        cout << "\n--- All-Rounder Details ---\n";
+    void showDetails()  {
+        cout << "\nAll-Rounder Details \n";
         Cricketer::showDetails();
         cout << "Wickets Taken: " << wickets;
         cout << "\nEconomy Rate: " << economy;
@@ -126,19 +124,19 @@ public:
         cout << "\nBatting Average: " << average << endl;
     }
 
-    string getType() override { return "All-Rounder"; }
+    string getType() { return "All-Rounder"; }
 };
 
-// -------------------------------------
+
 // Class : Double Wicket Pair
-// -------------------------------------
+
 class DoubleWicketPair {
     Bowler* bowler;
     Batsman* batsman;
 public:
     DoubleWicketPair(Bowler* b, Batsman* bt) : bowler(b), batsman(bt) {}
     void showPair() {
-        cout << "\n### DOUBLE WICKET PAIR ###\n";
+        cout << "\nDOUBLE WICKET PAIR \n";
         cout << "\nBowler:";
         bowler->showDetails();
         cout << "\nBatsman:";
@@ -146,15 +144,13 @@ public:
     }
 };
 
-// -------------------------------------
-// MAIN (Menu-Driven)
-// -------------------------------------
+//menu
 int main() {
     vector<Cricketer*> players;
     int choice;
 
     while (true) {
-        cout << "\n\n===== CRICKETER MANAGEMENT SYSTEM =====\n";
+        cout << "\nMENU :- \n";
         cout << "1. Add Bowler\n";
         cout << "2. Add Batsman\n";
         cout << "3. Add All-Rounder\n";
